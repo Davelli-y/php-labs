@@ -6,8 +6,8 @@ This repo is divided into two main sections:
 
 ## Projects 📂
 Contains small PHP projects and exercises with detailed READMEs:
-- [Functions: md5, strrev, array_unique](projects/md5-strrev-array_unique/README.md)
--
+- [Functions:](projects/md5-strrev-array_unique/README.md)
+
 ## Studies 📚
 Contains notes, study exercises, and experiments related to PHP basics and advanced topics. See [Studies](studies) for details.
 
