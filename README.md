@@ -6,12 +6,10 @@ This repo is divided into two main sections:
 
 ## Projects 📂
 Contains small PHP projects and exercises with detailed READMEs:
-- [Array Unique](projects/array-unique/README.md)
-- [String Reverse](projects/strrev/README.md)
-- [MD5 Hash](projects/md5/README.md)
-
+- [Functions: md5, strrev, array_unique](projects/md5-strrev-array_unique/README.md)
+-
 ## Studies 📚
-Contains notes, study exercises, and experiments related to PHP basics and advanced topics. See [Studies](studies/README.md) for details.
+Contains notes, study exercises, and experiments related to PHP basics and advanced topics. See [Studies](studies) for details.
 
 ---
 
