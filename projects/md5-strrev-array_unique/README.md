@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/Davelli-y/php-labs)
 
-This repository demonstrates a PHP form with **data processing** using `array_unique`, `strrev`, and `md5`.  
+This repository demonstrates a PHP form with **data processing** using `array_unique`, `mb_strrev`, and `md5`.  
 It is great for practicing PHP basics, array and string manipulation, and dynamic HTML/CSS display.
 
 ---
@@ -31,13 +31,13 @@ It is great for practicing PHP basics, array and string manipulation, and dynami
    - Checks which button was clicked
    - Processes the data using one of the following functions:
      - `array_unique`: removes duplicate values from arrays
-     - `strrev`: reverses strings
+     - `mb_strrev`: reverses strings
      - `md5`: generates an MD5 hash
 
 4. **Result Variables**  
    The processed results are stored in variables:
    - `$array_result` → unique array
-   - `$strrev_result` → reversed string
+   - `$mb_strrev` → reversed string
    - `$md5_result` → MD5 hash
 
 5. **Display**  
@@ -58,7 +58,7 @@ It is great for practicing PHP basics, array and string manipulation, and dynami
   5. Reindex the array: `array_values()` → `[0=>1,1=>2,...]`  
 - **Output:** `"1, 2, 3, 4, 5"`
 
-### 2️⃣ `strrev()`
+### 2️⃣ `mb_strrev()`
 - **Input:** `"Programar"`  
 - **Output:** `"rammargorP"`
 
