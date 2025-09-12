@@ -1,8 +1,7 @@
 <?php
 
-$integrantes = "Guilherme Henrique Yamaguchi Daveli";
+$integrantes = "Guilherme Henrique Yamaguchi Daveli, Livia De Lima Evers Rocha";
 
-// Inicializa variáveis
 $array_input = $_POST['valores_array'] ?? '';
 $strrev_input = $_POST['texto_inverter'] ?? '';
 $md5_input = $_POST['texto_md5'] ?? '';
@@ -12,27 +11,31 @@ $array_original_pretty = null;
 $strrev_result = null;
 $md5_result = null;
 
-// Função auxiliar: parseia lista separada por vírgula, remove entradas vazias e trim
 function parse_list($raw) {
     $parts = array_map('trim', explode(',', $raw));
-    // remove elementos vazios (string '')
     $parts = array_filter($parts, function($v) { return $v !== ''; });
     return array_values($parts);
 }
 
+function mb_strrev($string, $encoding = 'UTF-8') {
+    $length = mb_strlen($string, $encoding);
+    $reversed = '';
+    while ($length-- > 0) {
+        $reversed .= mb_substr($string, $length, 1, $encoding);
+    }
+    return $reversed;
+}
+
 if (isset($_POST['executar_array_unique'])) {
     $parsed = parse_list($array_input);
-    // Guarda versão original (após limpeza) para exibir
     $array_original_pretty = implode(', ', $parsed);
-    // Remove duplicados e reindexa
     $unique = array_values(array_unique($parsed));
     $array_result = $unique;
 }
 
 if (isset($_POST['executar_strrev'])) {
-    // Inverte a string (preservando entrada original)
     if ($strrev_input !== '') {
-        $strrev_result = strrev($strrev_input);
+        $strrev_result = mb_strrev($strrev_input, 'UTF-8');
     } else {
         $strrev_result = null;
     }
@@ -46,6 +49,8 @@ if (isset($_POST['executar_md5'])) {
     }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -53,77 +58,80 @@ if (isset($_POST['executar_md5'])) {
     <title>Atividade Avaliativa - Funções PHP</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <style>
-        :root {
-            --accent: #0b63d1;
-            --bg: #f6f8fb;
-            --card: #ffffff;
-            --muted: #666;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            background: var(--bg);
-            color: #222;
-            margin: 24px;
-        }
-        header {
-            margin-bottom: 20px;
-        }
-        h1 { margin: 0 0 6px 0; color: var(--accent); }
-        .subtitle { color: var(--muted); margin: 0 0 16px 0; }
+    :root {
+        --accent: #0b63d1;
+        --bg: #f6f8fb;
+        --card: #ffffff;
+        --muted: #666;
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        background: var(--bg);
+        color: #222;
+        margin: 24px;
+    }
+    header {
+        margin-bottom: 20px;
+    }
+    h1 {
+        margin: 0 0 6px 0;
+        color: #28a745; 
+    }
+    .subtitle { color: var(--muted); margin: 0 0 16px 0; }
 
-        .container { max-width: 900px; margin: 0 auto; }
-        .card {
-            background: var(--card);
-            border-radius: 10px;
-            box-shadow: 0 6px 18px rgba(15,30,60,0.06);
-            padding: 18px;
-            margin-bottom: 18px;
-        }
-        label { display:block; margin-bottom:6px; font-weight:600; }
-        input[type="text"], textarea {
-            width: 100%;
-            max-width: 680px;
-            padding: 8px 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 15px;
-            margin-bottom: 8px;
-        }
-        .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
-        input[type="submit"] {
-            background: var(--accent);
-            color: #fff;
-            padding: 9px 14px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-        }
-        input[type="submit"]:hover { opacity: 0.95; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .card {
+        background: var(--card);
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(15,30,60,0.06);
+        padding: 18px;
+        margin-bottom: 18px;
+    }
+    label { display:block; margin-bottom:6px; font-weight:600; }
+    input[type="text"], textarea {
+        width: 100%;
+        max-width: 680px;
+        padding: 8px 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+    .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    input[type="submit"] {
+        background: #28a745; 
+        color: #fff;
+        padding: 9px 14px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 700;
+        transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+        background: #218838; 
+    }
 
-        .resultado {
-            margin-top: 12px;
-            padding: 12px;
-            background: #f0f7ff;
-            border-left: 4px solid var(--accent);
-            border-radius: 6px;
-            font-size: 15px;
-        }
-        .small { color: var(--muted); font-size: 13px; margin-top: 8px; }
-        pre { background:#f7f7f7; padding:10px; border-radius:6px; overflow:auto; }
-        .mono { font-family: "Courier New", monospace; font-size: 14px; }
-    </style>
+    .resultado {
+        margin-top: 12px;
+        padding: 12px;
+        background: #f0f7ff;
+        border-left: 4px solid var(--accent);
+        border-radius: 6px;
+        font-size: 15px;
+    }
+    .small { color: var(--muted); font-size: 13px; margin-top: 8px; }
+    pre { background:#f7f7f7; padding:10px; border-radius:6px; overflow:auto; }
+    .mono { font-family: "Courier New", monospace; font-size: 14px; }
+</style>
+
 </head>
 <body>
 <div class="container">
     <header>
         <h1>Atividade Avaliativa - Funções PHP</h1>
-        <p class="subtitle"><strong>Integrante:</strong> <?php echo htmlspecialchars($integrantes); ?></p>
-        <p class="small">Instruções: digite os valores nos campos abaixo e clique no botão correspondente para ver o resultado.</p>
-    </header>
-
-    <!-- array_unique -->
-    <section class="card">
+        <p class="subtitle"><strong>Integrantes:</strong> <?php echo htmlspecialchars($integrantes); ?></p>
+        <section class="card">
         <h2>Função: <code>array_unique()</code></h2>
         <p><strong>Descrição:</strong> Remove valores duplicados de um array. No exemplo abaixo o usuário fornece uma lista separada por vírgulas; o sistema remove duplicados e mostra os valores únicos (reindexados).</p>
 
@@ -151,9 +159,8 @@ if (isset($_POST['executar_md5'])) {
         <?php endif; ?>
     </section>
 
-    <!-- strrev -->
     <section class="card">
-        <h2>Função: <code>strrev()</code></h2>
+        <h2>Função: <code>mb_strrev</code></h2>
         <p><strong>Descrição:</strong> Inverte os caracteres de uma string (da direita para a esquerda).</p>
 
         <form method="post" autocomplete="off">
@@ -176,7 +183,6 @@ if (isset($_POST['executar_md5'])) {
         <?php endif; ?>
     </section>
 
-    <!-- md5 -->
     <section class="card">
         <h2>Função: <code>md5()</code></h2>
         <p><strong>Descrição:</strong> Gera um hash MD5 de 32 caracteres a partir de uma string. <em>Observação:</em> MD5 não é recomendado para senhas em sistemas reais — hoje usamos <code>password_hash()</code> por segurança.</p>
@@ -205,7 +211,7 @@ if (isset($_POST['executar_md5'])) {
         <?php endif; ?>
     </section>
 
-   
+    
 </div>
 </body>
 </html>
