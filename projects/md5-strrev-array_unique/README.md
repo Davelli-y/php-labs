@@ -9,6 +9,7 @@ It is great for practicing PHP basics, array and string manipulation, and dynami
 
 ---
 
+
 ## Table of Contents
 - [User Flow](#user-flow)
 - [Function Details](#detailed-function-explanation)

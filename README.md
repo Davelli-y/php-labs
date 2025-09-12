@@ -5,7 +5,7 @@ Welcome to **PHP Labs**, a repository for practicing and experimenting with PHP.
 This repo is divided into two main sections:
 
 ## Projects 📂
-Contains small PHP projects and exercises with detailed READMEs:
+Contains small PHP projects and explanations:
 - [Functions:](projects/md5-strrev-array_unique/README.md)
 
 ## Studies 📚
